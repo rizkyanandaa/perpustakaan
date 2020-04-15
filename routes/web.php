@@ -11,15 +11,24 @@
 |
 */
 
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/', function () {
-    return redirect('beranda');
+    return view('frontend.index');
 });
 
-Route::get('login', 'AuthController@login')->name('login');
-Route::get('register1432', 'AuthController@register');
-Route::post('register', 'AuthController@store');
-Route::post('postlogin', 'AuthController@postlogin');
-Route::get('logout', 'AuthController@logout');
+// Route::get('login', 'AuthController@login')->name('login');
+// Route::get('register1432', 'AuthController@register');
+// Route::post('register', 'AuthController@store');
+// Route::post('postlogin', 'AuthController@postlogin');
+// Route::get('logout', 'AuthController@logout');
 
 Route::group(['middleware'=>['auth', 'checkRole:1']], function(){
 	Route::get('beranda', 'BerandaController@index');
@@ -139,14 +148,3 @@ Route::group(['middleware'=>['auth', 'checkRole:1, 2, 3']], function(){
 	Route::get('pengembalian/{id}', 'PengembalianController@store');
 	Route::get('pengembalian/setujui/{id}', 'PengembalianController@setujui');
 });
-
-// Route::get('keluar', function(){
-// 	\Auth::logout();
-// 	return redirect('login');
-// });
-
-// Auth::routes();
-
-// Route::get('/home', function(){
-// 	return redirect('beranda');
-// });

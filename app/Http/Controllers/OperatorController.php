@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelRole;
+use Image;
 
 class OperatorController extends Controller
 {
@@ -24,11 +25,15 @@ class OperatorController extends Controller
     }
 
     public function store(Request $request){
-        $foto = $request->file('foto');
+        if ($request->file('foto')) {
+            $foto = $request->file('foto');
 
-        // Mengupload File
-        $destinationPath = 'profil';
-        $foto->move($destinationPath, $foto->getClientOriginalName());
+            $foto_name = time().'.'.$foto->getClientOriginalExtension();
+            $request->file('foto')->move("profil/", $foto_name);
+            $image = Image::make('profil/'. $foto_name)->orientate();
+            $image->resize(200, 200);
+            $image->save('profil/'. $foto_name);
+        }
 
         User::insert([
             'role' => 2,
@@ -53,24 +58,25 @@ class OperatorController extends Controller
     }
 
     public function update(Request $request, $id){
-        $name = $request->name;
-        $email = $request->email;
-        $foto = $request->file('foto');
+        if ($request->file('foto')) {
+            $foto = $request->file('foto');
 
-        if ($foto) {
-            // Mengupload File
-            $destinationPath = 'profil';
-            $foto->move($destinationPath, $foto->getClientOriginalName());
+            $foto_name = time().'.'.$foto->getClientOriginalExtension();
+            $request->file('foto')->move("profil/", $foto_name);
+            $image = Image::make('profil/'. $foto_name)->orientate();
+            $image->resize(200, 200);
+            $image->save('profil/'. $foto_name);
+
             User::where('id', $id)->update([
-                'name' => $name,
-                'email' => $email,
-                'foto' => $foto->getClientOriginalName(),
+                'name' => $request->name,
+                'email' => $request->email,
+                'foto' => $foto_name,
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
         }else{
             User::where('id', $id)->update([
-                'name' => $name,
-                'email' => $email,
+                'name' => $request->name,
+                'email' => $request->email,
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
         }
@@ -106,16 +112,19 @@ class OperatorController extends Controller
     }
 
     public function editfoto(Request $request, $id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         
-        if($request->hasFile('foto')){
-            $file = $request->file('foto');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $extension;
-            $file->move('profil', $filename);
-            $user->foto = $filename;
+        if ($request->file('foto')) {
+            $foto = $request->file('foto');
+
+            $foto_name = time().'.'.$foto->getClientOriginalExtension();
+            $request->file('foto')->move("profil/", $foto_name);
+            $image = Image::make('profil/'. $foto_name)->orientate();
+            $image->resize(200, 200);
+            $image->save('profil/'. $foto_name);
         }
 
+        $user->foto = $foto_name;
         $user->updated_at = date('Y-m-d H:i:s');
         $user->save();
     

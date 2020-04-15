@@ -32,7 +32,7 @@
 
                 <div class="card-footer">
                   <a href="javascript:history.back()" class=" btn btn-danger"><i class="fa fa-left"></i> Kembali</a>
-                  <button type="submit" class="btn btn-primary float-right">Simpan Perubahan</button>
+                  <button type="submit" class="btn btn-primary float-right">Simpan</button>
                 </div>
               </form>
             </div>

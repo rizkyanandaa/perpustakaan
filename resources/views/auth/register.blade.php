@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Registration Page</title>
+  <title>Register Perpustakaan</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,7 +28,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form method="POST" action="{{ route('register') }}">
+      <form method="POST" action="{{ url('register') }}">
         @csrf
         <div class="input-group mb-3">
           <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full name" required autofocus>
@@ -56,6 +56,24 @@
             </div>
           </div>
         </div>
+        <!-- <div class="input-group mb-3">
+          <select name="role" class="form-control select2" style="width: 85%;">
+            <option selected="selected" disabled="">Pilih Status</option>
+            @foreach($role as $rl)
+            <option value="{{$rl->id}}">{{$rl->nama}}</option>
+            @endforeach
+          </select>
+          @if ($errors->has('name'))
+            <span class="help-block">
+              <strong>{{ $errors->first('name') }}</strong>
+            </span>
+          @endif
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div> -->
         <div class="input-group mb-3">
           <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
           @if ($errors->has('password'))
@@ -79,7 +97,7 @@
         </div>
         <div class="row">
           <div class="col-8">
-            <a href="{{route('login')}}" class="text-center">I already have a membership</a>
+            <a href="{{url('login')}}" class="text-center">I already have a membership</a>
             <!-- <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
               <label for="agreeTerms">

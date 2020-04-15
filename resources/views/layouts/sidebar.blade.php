@@ -1,6 +1,6 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="{{asset('adminlte/dist/img/logosmk1.png')}}" alt="SMK Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">SMKN 2 Guguak</span>
@@ -110,12 +110,22 @@
 
           <li class="nav-header">Other</li>
           <li class="nav-item">
-            <a href="{{ url('logout') }}" class="nav-link">
-              <i class="fa fa-fw fa-sign-out"></i>
+            <!-- <a href="{{ route('logout') }}" class="nav-link">
+              <i class="fa fa-fw fa-power-off"></i>
               <p>
                 Logout
               </p>
+            </a> -->
+            <a class="dropdown-item" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+              <i class="fa fa-fw fa-power-off"></i>
+              {{ __('Logout') }}
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
           </li>
         </ul>
       </nav>

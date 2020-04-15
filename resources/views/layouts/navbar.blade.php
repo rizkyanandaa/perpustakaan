@@ -5,7 +5,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li> -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a class="nav-link">Sistem Informasi Perpustakaan SMK Negeri 2 Kecamatan Guguak</a>
+        <a href="/" class="nav-link">Sistem Informasi Perpustakaan SMK Negeri 2 Kecamatan Guguak</a>
       </li>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>

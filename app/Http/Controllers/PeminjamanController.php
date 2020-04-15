@@ -39,7 +39,7 @@ class PeminjamanController extends Controller
         $buku->update();
 
         toastr()->success('Peminjaman telah berhasil! Mohon tunggu konfirmasi operator!');
-    	return redirect('/');
+    	return redirect('/beranda');
     }
 
     public function setujui($id){

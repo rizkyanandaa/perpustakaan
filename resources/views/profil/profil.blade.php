@@ -83,7 +83,7 @@
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          <input name="email" type="text" class="form-control" id="inputName" value="{{$u->email}}">
+                          <input name="email" type="text" class="form-control" id="inputName" value="{{$u->email}}" disabled>
                         </div>
                       </div>
                       
@@ -104,7 +104,7 @@
                       <div class="form-group">
                         <div class="custom-file">
                           <input type="file" name="foto" class="custom-file-input" id="customFile">
-                          <label class="custom-file-label" for="customFile"></label>
+                          <label class="custom-file-label" for="customFile">{{$u->foto}}</label>
                         </div>
                       </div>
                       
